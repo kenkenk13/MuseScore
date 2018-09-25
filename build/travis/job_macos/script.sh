@@ -73,6 +73,9 @@ MUSESCORE_VERSION=${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUM
 SHORT_DATE="$(date -u +%Y-%m-%d)"
 #date -R is not supporte !?
 RSS_DATE="$(LANG=C date +'%a, %d %b %Y %H:%M:%S %z')"
+FILESIZE="$(stat -f%z $DMGFILE)"
+APPCAST_URL=$(defaults read `pwd`/applebuild/mscore.app/Contents/Info.plist SUFeedURL)
+GIT_LOG=$(./build/travis/job_macos/generateGitLog.sh)
 
 if [[ "$NIGHTLY_BUILD" = "TRUE" ]]
 then
@@ -87,24 +90,24 @@ echo "<update>
 <infoUrl>https://ftp.osuosl.org/pub/musescore-nightlies/macosx/</infoUrl>
 </update>" >> update_mac_nightly.xml
 
-
+#todo extract appcast url SUFeedURL from info.plist...
 echo '<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
 <channel>
 <title>MuseScore development channel</title>
 <link>
-http://update.musescore.org/files/sparkletestcast.xml
+${APPCAST_URL}
 </link>
 <description>Most recent changes with links to updates.</description>
 <language>en</language>
 <item>
-<title>Version </title>
+<title>MuseScore ${MUSESCORE_VERSION} ${REVISION}</title>
 <description>
 <![CDATA[
-<ul> <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li> <li>Suspendisse sed felis ac ante ultrices rhoncus. Etiam quis elit vel nibh placerat facilisis in id leo.</li> <li>Vestibulum nec tortor odio, nec malesuada libero. Cras vel convallis nunc.</li> <li>Suspendisse tristique massa eget velit consequat tincidunt. Praesent sodales hendrerit pretium.</li> </ul>
+${GIT_LOG}
 ]]>
 </description>
-<pubDate>$RSS_DATE</pubDate>
-<enclosure url="https://ftp.osuosl.org/pub/musescore-nightlies/macosx/$DMGFILE" sparkle:version="2.0" length="107758" type="application/octet-stream"/>
+<pubDate>${RSS_DATE}</pubDate>
+<enclosure url="https://ftp.osuosl.org/pub/musescore-nightlies/macosx/${DMGFILE}" sparkle:version="2.0" length="${FILESIZE}" type="application/octet-stream"/>
 </item>
 </channel>
 </rss>' >> appcast.xml
