@@ -113,7 +113,7 @@ rm qt593_mac.zip
 export SPARKLE_VERSION=1.20.0
 mkdir -p ~/Library/Frameworks
 wget -nv https://github.com/sparkle-project/Sparkle/releases/download/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.bz2
-tar jxf Sparkle-${SPARKLE_VERSION}.tar.bz2
+tar jxf Sparkle-${SPARKLE_VERSION}.tar.bz2 -C Sparkle-${SPARKLE_VERSION}
 ls
 ls Sparkle-${SPARKLE_VERSION}
 mv Sparkle-${SPARKLE_VERSION}/Sparkle.framework ~/Library/Frameworks/
