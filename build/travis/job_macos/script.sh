@@ -90,8 +90,7 @@ echo "<update>
 <infoUrl>https://ftp.osuosl.org/pub/musescore-nightlies/macosx/</infoUrl>
 </update>" >> update_mac_nightly.xml
 
-#todo extract appcast url SUFeedURL from info.plist...
-echo '<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+echo "<rss xmlns:sparkle=\"http://www.andymatuschak.org/xml-namespaces/sparkle\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" version=\"2.0\">
 <channel>
 <title>MuseScore development channel</title>
 <link>
@@ -107,10 +106,10 @@ ${GIT_LOG}
 ]]>
 </description>
 <pubDate>${RSS_DATE}</pubDate>
-<enclosure url="https://ftp.osuosl.org/pub/musescore-nightlies/macosx/${DMGFILE}" sparkle:version="2.0" length="${FILESIZE}" type="application/octet-stream"/>
+<enclosure url=\"https://ftp.osuosl.org/pub/musescore-nightlies/macosx/${DMGFILE}\" sparkle:version=\"2.0\" length=\"${FILESIZE}\" type=\"application/octet-stream\"/>
 </item>
 </channel>
-</rss>' >> appcast.xml
+</rss>" >> appcast.xml
 
 curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash
 
