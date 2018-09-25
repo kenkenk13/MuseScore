@@ -111,12 +111,14 @@ rm qt593_mac.zip
 
 #install sparkle
 export SPARKLE_VERSION=1.20.0
-mkdir -p ~/Library/Frameworks
+mkdir Sparkle-${SPARKLE_VERSION}
+cd Sparkle-${SPARKLE_VERSION}
 wget -nv https://github.com/sparkle-project/Sparkle/releases/download/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.bz2
-tar jxf Sparkle-${SPARKLE_VERSION}.tar.bz2 -C Sparkle-${SPARKLE_VERSION}
-ls
-ls Sparkle-${SPARKLE_VERSION}
+tar jxf Sparkle-${SPARKLE_VERSION}.tar.bz2
+cd ..
+mkdir -p ~/Library/Frameworks
 mv Sparkle-${SPARKLE_VERSION}/Sparkle.framework ~/Library/Frameworks/
+rm -rf Sparkle-${SPARKLE_VERSION}
 
 #install signing certificate
 if [ -n "$CERTIFICATE_OSX_PASSWORD" ]
