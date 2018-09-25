@@ -71,7 +71,8 @@ VERSION_PATCH=$(grep 'SET(MUSESCORE_VERSION_PATCH' CMakeLists.txt | cut -d \" -f
 BUILD_NUMBER=${TRAVIS_BUILD_NUMBER}
 MUSESCORE_VERSION=${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${BUILD_NUMBER}
 SHORT_DATE="$(date -u +%Y-%m-%d)"
-RSS_DATE="$(date -R)"
+#date -R is not supporte !?
+RSS_DATE="$(LANG=C date +'%a, %d %b %Y %H:%M:%S %z')"
 
 if [[ "$NIGHTLY_BUILD" = "TRUE" ]]
 then
