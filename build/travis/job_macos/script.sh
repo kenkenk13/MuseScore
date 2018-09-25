@@ -106,7 +106,7 @@ ${GIT_LOG}
 ]]>
 </description>
 <pubDate>${RSS_DATE}</pubDate>
-<enclosure url=\"https://ftp.osuosl.org/pub/musescore-nightlies/macosx/${DMGFILE}\" sparkle:version=\"2.0\" length=\"${FILESIZE}\" type=\"application/octet-stream\"/>
+<enclosure url=\"https://ftp.osuosl.org/pub/musescore-nightlies/macosx/${DMGFILE}\" sparkle:version=\"${MUSESCORE_VERSION}\" length=\"${FILESIZE}\" type=\"application/octet-stream\"/>
 </item>
 </channel>
 </rss>" >> appcast.xml
