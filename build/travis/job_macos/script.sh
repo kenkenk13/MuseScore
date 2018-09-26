@@ -44,7 +44,8 @@ build/package_mac
 PACKAGE_NAME=MuseScore
 fi
 
-DMGFILE=applebuild/$PACKAGE_NAME-$DATE-$BRANCH-$REVISION.dmg
+DMGFILENAME=$PACKAGE_NAME-$DATE-$BRANCH-$REVISION.dmg
+DMGFILE=applebuild/$DMGFILENAME
 
 mv applebuild/$PACKAGE_NAME-$BRANCH-$REVISION.dmg $DMGFILE
 
@@ -86,7 +87,7 @@ echo "<update>
 <releaseType>nightly</releaseType>
 <date>${SHORT_DATE}</date>
 <description>MuseScore ${MUSESCORE_VERSION} ${REVISION}</description>
-<downloadUrl>https://ftp.osuosl.org/pub/musescore-nightlies/macosx/$DMGFILE</downloadUrl>
+<downloadUrl>https://ftp.osuosl.org/pub/musescore-nightlies/macosx/$DMGFILENAME</downloadUrl>
 <infoUrl>https://ftp.osuosl.org/pub/musescore-nightlies/macosx/</infoUrl>
 </update>" >> update_mac_nightly.xml
 
@@ -106,7 +107,7 @@ ${GIT_LOG}
 ]]>
 </description>
 <pubDate>${RSS_DATE}</pubDate>
-<enclosure url=\"https://ftp.osuosl.org/pub/musescore-nightlies/macosx/${DMGFILE}\" sparkle:version=\"${MUSESCORE_VERSION}\" length=\"${FILESIZE}\" type=\"application/octet-stream\"/>
+<enclosure url=\"https://ftp.osuosl.org/pub/musescore-nightlies/macosx/${DMGFILENAME}\" sparkle:version=\"${MUSESCORE_VERSION}\" length=\"${FILESIZE}\" type=\"application/octet-stream\"/>
 </item>
 </channel>
 </rss>" >> appcast.xml
@@ -127,5 +128,10 @@ export ARTIFACTS_TARGET_PATHS="/devel/3/macos/"
 export ARTIFACTS_PATHS=appcast.xml
 artifacts upload
 
+#pip install awscli
+#export AWS_ACCESS_KEY_ID=$UPDATE_S3_KEY
+#export AWS_SECRET_ACCESS_KEY=$UPDATE_S3_SECRET
+#aws configure set preview.cloudfront true
+#aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 fi
 
