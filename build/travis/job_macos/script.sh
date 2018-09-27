@@ -128,10 +128,10 @@ export ARTIFACTS_TARGET_PATHS="/devel/3/macos/"
 export ARTIFACTS_PATHS=appcast.xml
 artifacts upload
 
-#pip install awscli
-#export AWS_ACCESS_KEY_ID=$UPDATE_S3_KEY
-#export AWS_SECRET_ACCESS_KEY=$UPDATE_S3_SECRET
-#aws configure set preview.cloudfront true
-#aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+pip install awscli
+export AWS_ACCESS_KEY_ID=$UPDATE_S3_KEY
+export AWS_SECRET_ACCESS_KEY=$UPDATE_S3_SECRET
+aws configure set preview.cloudfront true
+aws cloudfront create-invalidation --distribution-id E15OTT2G07XS8C --paths "${ARTIFACTS_TARGET_PATHS}*"
 fi
 

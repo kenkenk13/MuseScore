@@ -3403,10 +3403,14 @@ bool MuseScore::eventFilter(QObject *obj, QEvent *event)
 
 bool MuseScore::hasToCheckForUpdate()
       {
+#ifdef MAC_SPARKLE_ENABLED
+      return false; // On Mac, sparkle take cares of the scheduling for now. On windows too probably.
+#else
       if (ucheck)
             return ucheck->hasToCheck();
       else
             return false;
+#endif
       }
 
 //---------------------------------------------------------
@@ -3425,7 +3429,7 @@ bool MuseScore::hasToCheckForExtensionsUpdate()
 void MuseScore::checkForUpdate()
       {
 #ifdef MAC_SPARKLE_ENABLED
-      SparkleAutoUpdater::checkUpdates();
+      SparkleAutoUpdater::checkForUpdatesNow();
 #else
       if (ucheck)
             ucheck->check(version(), sender() != 0);
