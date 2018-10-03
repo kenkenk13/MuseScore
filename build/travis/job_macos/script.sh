@@ -33,8 +33,7 @@ wget -c --no-check-certificate -nv -O musescore_dependencies_macos.zip  http://u
 unzip musescore_dependencies_macos.zip -d applebuild/mscore.app/Contents/Resources/Frameworks
 
 #install Sparkle
-mkdir -p applebuild/mscore.app/Frameworks
-cp -rf ~/Library/Frameworks/Sparkle.framework applebuild/mscore.app/Frameworks
+cp -rf ~/Library/Frameworks/Sparkle.framework applebuild/mscore.app/Contents/Resources/Frameworks
 
 if [[ "$NIGHTLY_BUILD" = "TRUE" ]]
 then # Build is marked UNSTABLE inside CMakeLists.txt

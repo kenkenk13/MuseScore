@@ -367,9 +367,9 @@
 	<key>SUFeedURL</key>
 	<string>${MAC_APPCAST_URL}</string>
 	<key>CFBundleLocalizations</key>
-  <array>
-    <string>en</string>
-    <string>fr</string>
-  </array>
+	<array>
+		<string>en</string>
+		<string>fr</string>
+	</array>
 </dict>
 </plist>
